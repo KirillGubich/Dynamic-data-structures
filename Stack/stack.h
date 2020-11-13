@@ -5,7 +5,7 @@ typedef int T;
 
 struct element
 {
-	int data;
+	T data;
 	struct element* nextEl;
 };
 
