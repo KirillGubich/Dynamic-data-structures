@@ -1,7 +1,7 @@
 #include "revPlNotation.h";
 #include "stack.h";
 
-// Относительный приоритет
+// РћС‚РЅРѕСЃРёС‚РµР»СЊРЅС‹Р№ РїСЂРёРѕСЂРёС‚РµС‚
 int getRelativePriority(char ch)
 {
 	switch (ch)
@@ -32,7 +32,7 @@ int getRelativePriority(char ch)
 	}
 }
 
-// Стековый приоритет
+// РЎС‚РµРєРѕРІС‹Р№ РїСЂРёРѕСЂРёС‚РµС‚
 int getStackPriority(char ch)
 {
 	switch (ch)
@@ -60,7 +60,7 @@ int getStackPriority(char ch)
 	}
 }
 
-// Преобразование выражения в обратную польскую запись
+// РџСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ РІС‹СЂР°Р¶РµРЅРёСЏ РІ РѕР±СЂР°С‚РЅСѓСЋ РїРѕР»СЊСЃРєСѓСЋ Р·Р°РїРёСЃСЊ
 char* transformExpression(char* exp)
 {
 	STACK st = NULL;
@@ -75,11 +75,11 @@ char* transformExpression(char* exp)
 
 	for (int i = 0; i < len; i++)
 	{
-		if (isEmpty(st) || getRelativePriority(exp[i]) > getStackPriority(viewTop(st))) // Если приоритет выше, чем на вершине стека
+		if (isEmpty(st) || getRelativePriority(exp[i]) > getStackPriority(viewTop(st))) // Р•СЃР»Рё РїСЂРёРѕСЂРёС‚РµС‚ РІС‹С€Рµ, С‡РµРј РЅР° РІРµСЂС€РёРЅРµ СЃС‚РµРєР°
 		{
 			push(&st, exp[i]);
 		}
-		else if (exp[i] == ')') // Если закрывающая скобка
+		else if (exp[i] == ')') // Р•СЃР»Рё Р·Р°РєСЂС‹РІР°СЋС‰Р°СЏ СЃРєРѕР±РєР°
 		{
 			while (viewTop(st) != '(')
 			{
@@ -88,7 +88,7 @@ char* transformExpression(char* exp)
 			}
 			pop(&st);
 		}
-		else // Если приоритет меньше или равен вершине стека
+		else // Р•СЃР»Рё РїСЂРёРѕСЂРёС‚РµС‚ РјРµРЅСЊС€Рµ РёР»Рё СЂР°РІРµРЅ РІРµСЂС€РёРЅРµ СЃС‚РµРєР°
 		{
 			while (!isEmpty(st) && getRelativePriority(exp[i]) <= getStackPriority(viewTop(st)))
 			{				
@@ -100,7 +100,7 @@ char* transformExpression(char* exp)
 		}
 	}
 
-	// Извлечение элементов, оставшихся в стеке
+	// РР·РІР»РµС‡РµРЅРёРµ СЌР»РµРјРµРЅС‚РѕРІ, РѕСЃС‚Р°РІС€РёС…СЃСЏ РІ СЃС‚РµРєРµ
 	while (!isEmpty(st))
 	{
 		if (viewTop(st) != '(' && viewTop(st) != ')')
@@ -118,7 +118,7 @@ char* transformExpression(char* exp)
 	return result;
 }
 
-// Вычисление ранга
+// Р’С‹С‡РёСЃР»РµРЅРёРµ СЂР°РЅРіР°
 int getRang(char *exp)
 {
 	int rang = 0;
